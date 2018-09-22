@@ -34,8 +34,7 @@ export class EmployeeAutocompleteComponent implements OnInit {
         let employeeName = item.name.toLowerCase()
         let employeeUserName = item.username.toLowerCase()
         let employeePhone = item.phone
-        
-        return  employeeName.includes(queryText) || employeeUserName.includes(queryText) || ( this.infoType === 'phone' && employeePhone.includes(queryText)) 
+        return (queryText !== ' ') && employeeName.includes(queryText) || employeeUserName.includes(queryText) || ( this.infoType === 'phone' && employeePhone.includes(queryText)) 
       })
       let data = {isMatchQuery: this.filteredList.length > 0, outputText: ''}
       this.data.next(data)

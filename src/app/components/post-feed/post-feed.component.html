@@ -6,12 +6,12 @@
         </mat-card-header>
         <mat-card-content>
       
-            <div [innerHTML]="post.markup | safeHtml"></div>
+            <div style="word-wrap: break-word;" [innerHTML]="post.markup | safeHtml"></div>
       
         </mat-card-content>
         <mat-card-actions>
           <button mat-button (click)="selectPost(post)">EDIT</button>
-          <button mat-button (click)="deletePost(index)">DELETE</button>
+          <button mat-button (click)="deletePost(post)">DELETE</button>
         </mat-card-actions>
       </mat-card>
 </div>

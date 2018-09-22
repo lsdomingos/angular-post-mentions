@@ -82,7 +82,9 @@ export class PostFormComponent implements OnInit {
     let isMatch = text.match(regex) ? text.match(regex).length > 0 : false
 
     if(text === searchCharacter){
-      this.closeAutocomplete()
+      isMatch = true;
+      text = searchCharacter + ' '
+      //this.closeAutocomplete()
     }
     
     this.viewContainerRef = this.adHost.viewContainerRef;
@@ -100,7 +102,7 @@ export class PostFormComponent implements OnInit {
         componentData.subscribe((value)=>{
           
           if(value.isMatchQuery !== null){
-            if(value.isMatchQuery === false)
+            if(value.isMatchQuery === false && text !==  searchCharacter + ' ')
             this.closeAutocomplete()
        
           }
@@ -111,7 +113,7 @@ export class PostFormComponent implements OnInit {
             var n = str.lastIndexOf(word);
             str = str.slice(0, n) + str.slice(n).replace(word, newWord);
 
-            this.input.displayText = this.input.value = str
+            this.input.displayText = str
             
             this.closeAutocomplete()
           }
@@ -120,7 +122,7 @@ export class PostFormComponent implements OnInit {
 
     }
 
-    if(!(text.includes('@') || text.includes('#')) || text.includes('\r\n') || text.includes('\n') || text.slice(-1) === '' || text.slice(-1) === "\r\n" || text.slice(-1) === "\n"){
+    if(!(text.includes('@') || text.includes('#')) || text.includes('\r\n') || text.includes('\n')  || text.slice(-1) === "\r\n" || text.slice(-1) === "\n"){
       this.closeAutocomplete()
     }
   

@@ -52,8 +52,14 @@ export function postReducer(state = initialState, action: PostActions.Actions) {
                 posts: [...state.posts, action.payload]
             }
         case PostActions.REMOVE_POST:
-            state.posts.splice(action.payload, 1)
-            return state;
+            let filteredPosts = state.posts.filter((item) => {
+                return item.id !== action.payload.id
+            })
+            return {
+                ...state,
+                posts: filteredPosts,
+                selectedEmployee: null
+            }
         case PostActions.UPDATE_POST:
             let toUpdate = state.posts.map((item) => {
                 if (item.id === action.payload.id)
@@ -86,37 +92,34 @@ export function postReducer(state = initialState, action: PostActions.Actions) {
     }
 }
 
-const getMarkup = (employees , post) => {
+const getMarkup = (employees, post) => {
     post.markup = post.text
     let regex = /([@#][\w_-]+)/g
-   
+
     let toMatch = post.text.match(regex)
-   
-    if(toMatch)
-   
+
+    if (toMatch)
+
         employees.forEach(employee => {
             toMatch.forEach(element => {
-                console.log(element.substr(1), '---', employee.username)
                 let type
-                if(element.charAt(0) === '@') type = 'username'
-                if(element.charAt(0) === '#') type = 'phone'
-                if(element.substr(1) === employee.username || element.substr(1) === employee.phone)
-
-                //post.markup = post.markup.replace(element, `<employee id="${employee.id}" type="${type}" adHost><span class="hightlight">${(type=== 'username' ? '@' + employee.username : '#' + employee.phone) }</span></employee>`)
-                post.markup = post.markup.replace(element, `<span class="tool" data-tip="${employee.name}  @${employee.username}  #${employee.phone}  ${employee.role}" tabindex="2">${(type=== 'username' ? '@' + employee.username : '#' + employee.phone)}</span>`)
+                if (element.charAt(0) === '@') type = 'username'
+                if (element.charAt(0) === '#') type = 'phone'
+                if (element.substr(1) === employee.username || element.substr(1) === employee.phone)
+                    //post.markup = post.markup.replace(element, `<employee id="${employee.id}" type="${type}" adHost><span class="hightlight">${(type=== 'username' ? '@' + employee.username : '#' + employee.phone) }</span></employee>`)
+                    post.markup = post.markup.replace(element, `<span class="tool" data-tip="${employee.name}  @${employee.username}  #${employee.phone}  ${employee.role}" tabindex="2">${(type === 'username' ? '@' + employee.username : '#' + employee.phone)}</span>`)
             });
         });
-    
-    
+
     return post
 }
 
 
 function guid() {
     function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }

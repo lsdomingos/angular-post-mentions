@@ -50,7 +50,6 @@ export class EmployeesListComponent implements OnInit {
 
   ngOnInit() {
     this.employees.subscribe((employees)=>{
-      console.log('------')
       this.dataSource = employees
     })
   }

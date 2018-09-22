@@ -36,7 +36,7 @@ export function adminReducer(state = initialState, action: AdminActions.Actions)
 
     switch (action.type) {
         case AdminActions.ADD_EMPLOYEE:
-            action.payload.id = action.payload.id ? action.payload.id : generateId(state)
+            action.payload.id = action.payload.id ? action.payload.id : guid()
             return {
                 employees: [...state.employees, action.payload]
             }
@@ -70,6 +70,11 @@ export function adminReducer(state = initialState, action: AdminActions.Actions)
     }
 }
 
-const generateId = (state) => {
-    return String(state.employees.length + 1)
-}
+const guid = () => {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }

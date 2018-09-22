@@ -8,6 +8,9 @@
             </button>
             
       </div>
+      <button *ngIf="filteredList.length === 0" mat-stroked-button [disabled]="true">
+        <span>Type to search. <br>Use @ to add employee username tag or # to add phone number tag. </span>
+      </button>
     </mat-card>
 </div>
 <mat-divider></mat-divider>
