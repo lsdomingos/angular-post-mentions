@@ -1,0 +1,12 @@
+.header-container {
+    margin-bottom: 30px;
+    position: fixed;
+    z-index: 999;
+    background-color: #FFF;
+}
+
+.main-container {
+    height: calc(100% - 100px);
+    padding-top: 100px;
+    padding-bottom: 100px;
+}

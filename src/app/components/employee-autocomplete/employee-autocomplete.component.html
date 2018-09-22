@@ -1,0 +1,13 @@
+<mat-divider></mat-divider>
+<div class="employee-autocomplete-container" >
+    <mat-card>
+      <div *ngFor="let employee of filteredList let i = index">
+            <button mat-stroked-button (click)="addEmployeeTag(employee)"><mat-icon aria-label="Example icon-button with a face icon">face</mat-icon>
+              <span>{{employee.username}}</span>
+              <div *ngIf="infoType === 'phone'"><label>Phone:</label><mat-chip color="primary" selected>{{employee.phone}}</mat-chip></div>
+            </button>
+            
+      </div>
+    </mat-card>
+</div>
+<mat-divider></mat-divider>

@@ -1,0 +1,32 @@
+<div class="post-container">
+
+  <div class="form-container">
+    <mat-form-field class="input-full-width">
+      <textarea  (click)="closeAutocomplete()" matInput placeholder="Leave a comment" (ngModelChange)="parseTextInput($event)" [(ngModel)]="input.displayText" ></textarea>
+    </mat-form-field>
+    <button *ngIf="!selectedPostData" type="button" mat-icon-button color="primary" (click)="addPost(input.displayText)">
+            <mat-icon aria-label="Example icon-button with a heart icon">send</mat-icon>
+    </button>
+    <button *ngIf="selectedPostData" type="button" mat-icon-button color="primary" (click)="updatePost(input.displayText)">
+        <mat-icon aria-label="Example icon-button with a update icon">update</mat-icon>
+</button>
+    <ng-template ad-host></ng-template>
+</div>
+</div>
+
+
+<!-- <div class="post-container">
+
+        <form class="form-container">
+          <mat-form-field class="input-full-width">
+          <mwl-text-input-autocomplete-container>
+            <textarea matInput placeholder="Leave a comment" mwlTextInputAutocomplete [findChoices]="findChoices" [getChoiceLabel]="getChoiceLabel" #text></textarea>
+          </mwl-text-input-autocomplete-container>
+          </mat-form-field>
+          <button type="button" mat-icon-button color="primary" (click)="addPost(text.value)">
+                  <mat-icon aria-label="Example icon-button with a heart icon">send</mat-icon>
+          </button>
+        </form>
+      
+      </div> -->
+      

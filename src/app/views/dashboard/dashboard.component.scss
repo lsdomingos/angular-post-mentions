@@ -1,0 +1,20 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+}
+
+post-form{
+    width: 100%;
+    max-width: 500px;
+}
+.post-form-container{
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-container {
+    position: fixed;
+    bottom: 0;
+    float: right;
+    padding: 15px;
+}

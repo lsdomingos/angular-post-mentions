@@ -1,0 +1,23 @@
+<div class="left">
+
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Name"  [(ngModel)]="nameValue" #name="ngModel" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Username" pattern="[\w-_]+"  [(ngModel)]="usernameValue" #username="ngModel" (ngModelChange)="validateUsername($event)">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Phone" (ngModelChange)="validatePhone($event)" [(ngModel)]="phoneValue" #phone="ngModel">
+    </mat-form-field>
+    <label *ngIf="!valid">The phone number you introduced is already registred</label>
+    <mat-form-field>
+      <input matInput placeholder="Role" #role>
+    </mat-form-field>
+
+  </div>
+  <button mat-stroked-button [disabled]="this.username.invalid || this.name.invalid || !this.valid" *ngIf="!selectedEmployeeData" (click)="addEmployee(nameValue,usernameValue,phoneValue,role.value)">Add a
+    Employee</button>
+  <button mat-stroked-button [disabled]="this.username.invalid || this.name.invalid || !this.valid" *ngIf="selectedEmployeeData" (click)="updateEmployee(nameValue,usernameValue,phoneValue,role.value)">Update
+    a Employee</button>
+</div>
